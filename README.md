@@ -6,20 +6,22 @@ I’ve been meaning to set up an Ubuntu server to run some docker containers as 
 
 On of the things I love about this build is that we can run a VPN through the torrent container only (**QBbittorrentVPN**). We maintain our anonymity when using public torrent trackers as well as maintain normal download and upload speeds outside of the container.
 
+## Services
+
 My mini server runs Ubuntu This mini server runs multiple services, what we call a **stack**:
 
-- plex
-- jackett
-- organizr
-- qbittorrentvpn
-- radarr
-- sabnzbd
-- sonarr
-- grafana
-- prometheus
-- node-exporter
+- [SABnzbd](#SABnzbd)
+- [Sonarr](#Sonarr)
+- [Radarr](#Radarr)
+- [Organizr](#Organizr)
+- [Jackett](#Jackett)
+- [Plex](#Plex)
+- [Prometheus](#Prometheus)
+- [Node-Exporter](#Node)
+- [QBittorrentVPN](#QBittorrentVPN)
 
-## SABnzbd
+
+## SABnzbd  <a name="SABnzbd"></a>
 
 [SABnzbd](https://sabnzbd.org/wiki/) is a program to download binary files from Usenet servers. Many people upload all sorts of interesting material to Usenet and you need a special program to get this material with the least effort.
 
@@ -46,7 +48,7 @@ Key features of SABnzbd include:
 In short, SABnzbd is a powerful tool for automating the download and management of content from Usenet via NZB files, and it simplifies the process by handling downloading, verification, and file unpacking.
 
 
-## Sonarr
+## Sonarr <a name="Sonarr"></a>
 
 
 [Sonarr](https://sonarr.tv/) is an open-source personal video recorder (PVR) software designed to help users automate the process of downloading and managing TV shows. It works by monitoring specified TV shows, checking for new episodes, and automatically downloading them from Usenet or torrent clients. 
@@ -68,7 +70,7 @@ Key features of Sonarr include:
 In summary, Sonarr helps users keep track of TV shows and automates the download and management of episodes using Usenet or torrent services.
 
 
-## Radarr
+## Radarr <a name="Radarr"></a>
 
 
 [Radarr](https://radarr.video) is an open-source, movie-focused companion to Sonarr, designed to automate the process of downloading and managing movies. It works similarly to Sonarr but is specifically tailored for managing a movie collection. Radarr helps users keep track of desired movies, find high-quality versions, and download them automatically from Usenet or torrent services.
@@ -94,7 +96,7 @@ Key features of Radarr include:
 In summary, Radarr helps users automate and streamline the process of downloading, organizing, and managing a movie collection, integrating with Usenet and torrent clients to ensure that high-quality versions of movies are added to their library with minimal manual intervention.
 
 
-## Organizr
+## Organizr <a name="Organizr"></a>
 
 [Organizr](https://organizr.app) is a web-based tool designed to consolidate access to various web applications into a single, unified dashboard. It's particularly popular in the media server and home server communities, where users run multiple self-hosted services like Sonarr, Radarr, SABnzbd, Plex, and others. Organizr simplifies the process of managing and accessing these services by providing a centralized interface.
 
@@ -122,7 +124,7 @@ In summary, Organizr is a powerful tool for anyone managing multiple self-hosted
 
 
 
-## Grafana
+## Grafana <a name="Grafana"></a>
 
 [Grafana](https://grafana.com) is an open-source analytics and monitoring platform used to visualize and analyze metrics from various data sources in real-time. It's widely used in industries like IT operations, DevOps, data science, and software development to monitor system performance, track business metrics, and analyze data trends.
 
@@ -150,7 +152,7 @@ Key features of Grafana include:
 
 In summary, Grafana is a powerful and flexible platform for creating real-time dashboards and monitoring infrastructure or business metrics across multiple data sources. Its versatility makes it an essential tool for organizations that need in-depth insights into system performance, application metrics, and large-scale data analysis.
 
-## Jackett
+## Jackett <a name="Jackett"></a>
 
 [Jackett](https://github.com/Jackett/Jackett) is an open-source tool that acts as a proxy between torrent indexers and applications like Sonarr, Radarr, and other media automation tools. Its primary purpose is to enable these applications to search for and download content from a wide variety of public and private torrent trackers. Jackett simplifies the process of searching for torrents across multiple sources and integrates them seamlessly into your media management workflows.
 
@@ -174,6 +176,7 @@ Key features of Jackett include:
 
 In summary, Jackett is an essential tool for users who want to automate the process of downloading content from torrent sites using applications like Sonarr, Radarr, and other media automation tools. By acting as a proxy for hundreds of torrent indexers, it streamlines the torrent search and download process while supporting both public and private trackers.
 
+## PLEX <a name="Plex"></a>
 
 [Plex](https://www.plex.tv) is a popular media server platform that allows users to organize, stream, and access their personal media content (like movies, TV shows, music, photos, and home videos) on various devices. It provides a centralized way to manage media libraries and stream content both locally and remotely to a wide range of devices.
 
@@ -204,7 +207,7 @@ Key features of Plex include:
 In summary, Plex is a versatile and comprehensive media management solution that allows users to centralize their personal media libraries and stream content across devices, both locally and remotely. With its rich features like live TV, DVR, metadata management, and support for multiple device types, Plex is widely used for home entertainment systems.
 
 
-## Prometheus
+## Prometheus <a name="Prometheus"></a>
 
 [Prometheus](https://prometheus.io) is an open-source monitoring and alerting toolkit designed for collecting and analyzing time-series data, primarily from software systems and infrastructure. It is widely used in DevOps and cloud-native environments to monitor applications, services, and server performance metrics.
 
@@ -236,7 +239,7 @@ Key features of Prometheus include:
 
 In summary, Prometheus is a robust and flexible solution for monitoring and alerting in modern software environments. Its time-series data model, powerful query language, and integrations with alerting and visualization tools make it ideal for tracking application performance, server health, and infrastructure metrics. It is especially popular in DevOps, SRE (Site Reliability Engineering), and cloud-native ecosystems.
 
-## Node Exporter
+## Node Exporter <a name="Node"></a>
 
 [Node Exporter](https://github.com/prometheus/node_exporter) is an open-source tool designed to expose hardware and OS-level metrics from Linux-based systems (and other operating systems) for Prometheus. It is one of the most widely used exporters in the Prometheus ecosystem, helping users monitor system metrics like CPU usage, memory consumption, disk I/O, network statistics, and more. It enables Prometheus to scrape and collect these metrics for analysis, alerting, and visualization.
 
@@ -288,7 +291,7 @@ In summary, Prometheus is a robust and flexible solution for monitoring and aler
 Node Exporter is a core tool for monitoring system-level metrics in the Prometheus ecosystem. It provides detailed insight into server performance, resource utilization, and health, making it invaluable for infrastructure monitoring, alerting, and diagnostics in both small and large-scale environments.
 
 
-## QBittorrentVPN
+## QBittorrentVPN <a name="QBittorrentVPN"></a>
 
 Finally there's [QBittorrentVPN](https://hub.docker.com/r/markusmcnugen/qbittorrentvpn/)
 
