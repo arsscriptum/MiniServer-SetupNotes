@@ -43,7 +43,6 @@ Here's my file:
 
 
 ```yml
-version: "2.1"
 services:
   plex:
     image: lscr.io/linuxserver/plex
