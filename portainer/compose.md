@@ -29,7 +29,8 @@ need to make sure that all the paths on the left, for each service exists, has t
 /home/storage/Configs/Sabnzbd
 /home/storage/Configs/Sonarr
 /home/storage/Torrents
-/home/storage/Torrents/Incomplete
+/home/storage/TorrentFiles
+/home/storage/Incomplete
 /home/storage/TV
 /home/storage/Movies
 /home/storage/Downloads
@@ -110,10 +111,9 @@ services:
       - 8999:8999/udp
     volumes:
       - /home/storage/Configs/QBittorrentVPN:/config
-      - /home/storage/Torrents/Complete:/Complete
-      - /home/storage/Torrents/Incomplete:/Incomplete
-      - /home/storage/Torrents/TorrentFiles:/TorrentFiles
-      - /home/storage/Torrents/TorrentFiles_Incomplete:/TorrentFiles_Incomplete
+      - /home/storage/Torrents:/downloads
+      - /home/storage/Incomplete:/Incomplete
+      - /home/storage/TorrentFiles:/TorrentFiles
       - /etc/timezone:/etc/timezone:ro #This is for TimeZone
     restart: unless-stopped
     
