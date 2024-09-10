@@ -205,3 +205,40 @@ services:
         - 9292:9090
       restart: unless-stopped
 ```
+
+## PLEX SERVER - Claiming
+
+The `PLEX_CLAIM` variable is used in the Plex Docker image to automatically claim your Plex Media Server to your Plex account when the server is first set up. This is useful when deploying Plex in a containerized environment, especially in headless or automated setups, where you may not have immediate access to the web UI for claiming the server manually.
+
+### Purpose:
+When you set up Plex Media Server for the first time, Plex requires you to claim the server to link it to your Plex account. This usually involves logging into your Plex account through the server's web UI. By using the `PLEX_CLAIM` environment variable, you can bypass this manual process by providing a special claim token when the container is started, automatically linking the server to your account.
+
+### How to Use It:
+1. **Obtain a Claim Token**:
+   - Go to [https://plex.tv/claim](https://plex.tv/claim) and log into your Plex account.
+   - You'll receive a claim token in the format `claim-XXXXXXXXX`.
+
+2. **Set the `PLEX_CLAIM` Environment Variable**:
+   When you run the Plex Docker container, pass the claim token as an environment variable like this:
+
+   ```bash
+   docker run -d \
+     -e PLEX_CLAIM="claim-XXXXXXXXX" \
+     -e PLEX_UID=1000 \
+     -e PLEX_GID=1000 \
+     -v /path/to/config:/config \
+     -v /path/to/media:/media \
+     --name plex \
+     --network host \
+     plexinc/pms-docker
+   ```
+
+   Replace `"claim-XXXXXXXXX"` with the claim token you obtained.
+
+### What Happens:
+- The claim token allows Plex Media Server to authenticate with your Plex account and automatically register the server under your account without needing to open the web interface.
+- Once the server is successfully claimed, the `PLEX_CLAIM` variable is no longer needed for future container starts, as the server remains linked to your Plex account.
+
+### Important Notes:
+- Claim tokens expire after about 4 minutes, so you should generate the token just before running the Docker container.
+- The `PLEX_CLAIM` variable is used only during the initial setup. After that, you won't need to provide the token again unless you reinstall or reset the server configuration.
