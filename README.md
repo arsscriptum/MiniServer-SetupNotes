@@ -7,7 +7,13 @@ I'll be using docker and notes may be usefull in the future. Using docker, setti
 
 On of the things I love about this build is that we can run a VPN through the torrent container only (**QBbittorrentVPN**). We maintain our anonymity when using public torrent trackers as well as maintain normal download and upload speeds outside of the container.
 
-## Services
+## System Services
+
+
+Im running multiple custom [system services](services.md)
+
+
+## Media Services
 
 My mini server runs Ubuntu This mini server runs multiple services, what we call a **stack**:
 
