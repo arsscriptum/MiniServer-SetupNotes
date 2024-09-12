@@ -70,7 +70,7 @@ if [ ! -d "$backup_dir" ]; then
 fi
 
 # Set the output filename for the backup tarball
-backup_file="$backup_dir/backup_$(date +%Y%m%d).tar.gz"
+backup_file="$backup_dir/backup_scripts-config_$(date +%Y%m%d).tar.gz"
 
 # List of files and directories to include in the package
 files_to_backup=(

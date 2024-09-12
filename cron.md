@@ -51,7 +51,7 @@ Now, the `create_backup.sh` script will run automatically every day at 2:00 AM (
 ### Log Output:
 If you want to log the script's output to a file for troubleshooting or review, you can modify the cron job to include a redirection to a log file:
 ```bash
-0 2 * * * /srv/scripts/create_backup.sh >> /var/log/backup_script.log 2>&1
+0 2 * * * /srv/scripts/create_backup.sh >> /var/log/backup_script-config.log 2>&1
 ```
 
 This will append both standard output and error messages to `/var/log/backup_script.log`.
