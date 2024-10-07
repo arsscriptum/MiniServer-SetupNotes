@@ -1,0 +1,92 @@
+services:
+  plex:
+    image: lscr.io/linuxserver/plex
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=docker
+      - PLEX_CLAIM=claim-F5WfcC_V4jqvETtGw547
+    volumes:
+      - /media/Configs:/config
+      - /media/TV:/tv
+      - /media/Movies:/movies
+    restart: unless-stopped
+    
+    
+  qbittorrentvpn:
+    image: markusmcnugen/qbittorrentvpn
+    container_name: qbittorrentvpn
+    privileged: true   
+    environment:
+      - VPN_USERNAME=m2thr9aidi8pzot7vbg99jce
+      - VPN_PASSWORD=d8w8eckfyfwr5lxrv8gme7fp
+      - PUID=1000
+      - PGID=1000
+      - WEBUI_PORT_ENV=8080
+      - INCOMING_PORT_ENV=8999
+      - VPN_ENABLED=yes
+      - VPN_CONFIG=my_expressvpn_canada_-_montreal_udp
+      - OPENVPN_CONFIG=my_expressvpn_canada_-_montreal_udp
+      - LAN_NETWORK=10.0.0.0/24 #adjust this to YOUR network settings
+      - NAME_SERVERS=1.1.1.1,1.0.0.1 #you can use whatever DNS provider you want
+
+    ports:
+      - 8080:8080
+      - 8999:8999
+      - 8999:8999/udp
+    volumes:
+      - /media/Movies:/Movies
+      - /media/TV:/TV
+      - /media/Scripts/qBittorrentVPN:/scripts
+      - /media/Configs/QBittorrentVPN:/config
+      - /media/Torrents:/downloads
+      - /media/Incomplete:/Incomplete
+      - /media/TorrentFiles:/TorrentFiles
+      - /etc/timezone:/etc/timezone:ro #This is for TimeZone
+    restart: unless-stopped
+    
+  node-exporter:
+      image: quay.io/prometheus/node-exporter:latest
+      container_name: node-exporter
+      network_mode: host
+      environment:
+        - PUID=1000
+        - PGID=1000
+        - TZ=America/Los_Angeles
+        - UMASK_SET=022
+      volumes:
+          - /run:/run:ro,rslave
+          - /sys:/host/sys:ro,rslave
+          - /:/host:ro,rbin
+      ports:
+        - 9100:9090
+      restart: unless-stopped
+    
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+      - UMASK_SET=022
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+
+  prometheus:
+      image: prom/prometheus
+      container_name: prometheus
+      environment:
+        - PUID=999
+        - PGID=988
+        - TZ=America/Los_Angeles
+        - UMASK_SET=022
+      volumes:
+        - /etc/prometheus/prometheus.yml:/media/Configs/Prometheus/prometheus.yml
+      ports:
+        - 9292:9090
+      restart: unless-stopped
+
