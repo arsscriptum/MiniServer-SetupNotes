@@ -12,6 +12,8 @@ services:
       - /media/Configs:/config
       - /media/TV:/tv
       - /media/Movies:/movies
+      - /media/NewAdditions:/recents
+      - /home/qbittorrentvpn/bufferzone:/bufferzone
     restart: unless-stopped
     
     
@@ -37,13 +39,14 @@ services:
       - 8999:8999
       - 8999:8999/udp
     volumes:
-      - /media/Movies:/Movies
-      - /media/TV:/TV
-      - /media/Scripts/qBittorrentVPN:/scripts
+
+      - /home/qbittorrentvpn/bufferzone:/bufferzone
+      - /home/qbittorrentvpn/logs:/logs
+      - /home/qbittorrentvpn/scripts:/scripts
       - /media/Configs/QBittorrentVPN:/config
-      - /media/Torrents:/downloads
-      - /media/Incomplete:/Incomplete
-      - /media/TorrentFiles:/TorrentFiles
+      - /home/qbittorrentvpn/downloads:/downloads
+      - /home/qbittorrentvpn/incomplete:/Incomplete
+      - /home/qbittorrentvpn/torrentfiles:/TorrentFiles
       - /etc/timezone:/etc/timezone:ro #This is for TimeZone
     restart: unless-stopped
     
